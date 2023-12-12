@@ -19,9 +19,12 @@ area :: Shape -> Double
 --area = error "todo: Course.Synatx#area"
 area (Circle r) = pi * r * r
 area (Rectangle w h) = w * h
-
 area (Triangle a b c) = sqrt (s * (s - a) * (s - b) * (s - c))
   where s = (a + b + c) / 2
---area (Triangle a b c) =
---  let s = (a + b + c) / 2
---  in sqrt (s * (s - a) * (s - b) * (s - c))
+area (Triangle a b c) =
+  let s = (a + b + c) / 2
+  in sqrt (s * (s - a) * (s - b) * (s - c))
+ area = case
+   Circle r -> pi * r * r
+   Rectangle w h -> w * h
+   Triangle b h -> b * h / 2
