@@ -2,7 +2,7 @@
 module Course.Syntax where
 
 import Course.Core ( Eq, Fractional((/)), Num((*)), Show )
-import Prelude (Double, sqrt)
+import Prelude (Double, sqrt, Int)
 
 -- Write a constant approximating Pi
 pi :: Double
@@ -31,11 +31,11 @@ area shape = case shape of
 
 
 -- Define a Circle with radius 5
-myCircle :: Shape
-myCircle = Circle 5
+-- myCircle :: Shape
+-- myCircle = Circle 5
 
 -- Call the area function with the Circle
-result :: Double
-result = area myCircle
+-- result :: Double
+-- result = area myCircle
 
 

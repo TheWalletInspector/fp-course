@@ -7,6 +7,7 @@ import qualified Control.Applicative as A
 import qualified Control.Monad as M
 import Course.Core
 import qualified Prelude as P
+import Data.String (String)
 
 -- | The `Optional` data type contains 0 or 1 value.
 --
@@ -19,16 +20,22 @@ data Optional a =
 -- | Return the possible value if it exists; otherwise, the first argument.
 --
 -- >>> fullOr 99 (Full 8)
--- 8
+-- WAS 8
+-- NOW todo: Course.Optional#fullOr
 --
 -- >>> fullOr 99 Empty
--- 99
+-- WAS 99
+-- NOW todo: Course.Optional#fullOr
 fullOr ::
   a
   -> Optional a
   -> a
 fullOr =
   error "todo: Course.Optional#fullOr"
+
+-- data Person = MkPerson String Int
+-- brian :: Person
+-- brian = MkPerson "Brian" 27
 
 -- | Map the given function on the possible value.
 --

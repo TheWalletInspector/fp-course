@@ -47,7 +47,6 @@ module Course.Core(
 , bool
 ) where
 
-
 import Prelude(
     Eq(..)
   , Ord(..)
