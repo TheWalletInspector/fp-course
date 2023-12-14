@@ -2,7 +2,7 @@
 module Course.Syntax where
 
 import Course.Core ( Eq, Fractional((/)), Num((*)), Show )
-import Prelude (Double)
+import Prelude (Double, Integer, Rational, pi, Int, fromInteger)
 
 -- Write a constant approximating Pi
 -- pi :: Double
@@ -13,11 +13,11 @@ data Shape = Circle Double | Rectangle Double Double | Triangle Double Double
   deriving (Eq, Show)
 
 -- Write a function that takes a Shape and calculates the area of that shape
--- area :: Shape -> Double
--- area shape = case shape of
---   Circle r -> pi * r * r
---   Rectangle w h -> w * h
---   Triangle b h -> b * h / 2
+area :: Shape -> Double
+area shape = case shape of
+  Circle r -> pi * r * r
+  Rectangle w h -> w * h
+  Triangle b h -> b * h / 2
 
 --area = error "todo: Course.Synatx#area"
 -- area (Circle r) = pi * r * r

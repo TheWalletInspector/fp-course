@@ -30,8 +30,8 @@ fullOr ::
   a
   -> Optional a
   -> a
-fullOr =
-  error "todo: Course.Optional#fullOr"
+fullOr _ (Full a) = a 
+fullOr defaultValue Empty = defaultValue 
 
 -- data Person = MkPerson String Int
 -- brian :: Person
@@ -48,8 +48,8 @@ mapOptional ::
   (a -> b)
   -> Optional a
   -> Optional b
-mapOptional =
-  error "todo: Course.Optional#mapOptional"
+mapOptional f (Full a) = Full (f a)
+mapOptional _ Empty = Empty
 
 -- | Bind the given function on the possible value.
 --
@@ -65,8 +65,8 @@ bindOptional ::
   (a -> Optional b)
   -> Optional a
   -> Optional b
-bindOptional =
-  error "todo: Course.Optional#bindOptional"
+bindOptional f (Full a) = f a
+bindOptional _ Empty = Empty
 
 -- | Try the first optional for a value. If it has a value, use it; otherwise,
 -- use the second value.
@@ -86,8 +86,9 @@ bindOptional =
   Optional a
   -> Optional a
   -> Optional a
-(<+>) =
-  error "todo: Course.Optional#(<+>)"
+(<+>) (Full l) _ = Full l 
+(<+>) Empty o = o
+
 
 -- | Replaces the Full and Empty constructors in an optional.
 --
@@ -101,8 +102,8 @@ optional ::
   -> b
   -> Optional a
   -> b
-optional =
-  error "todo: Course.Optional#optional"
+optional f _ (Full a) = f a
+optional _ defaultValue Empty = defaultValue
 
 applyOptional :: Optional (a -> b) -> Optional a -> Optional b
 applyOptional f a = bindOptional (\f' -> mapOptional f' a) f
