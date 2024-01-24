@@ -36,13 +36,12 @@ infixl 4 <$>
 --
 -- >>> (+1) <$> ExactlyOne 2
 -- ExactlyOne 3
-instance Functor ExactlyOne where
-  (<$>) ::
-    (a -> b)
-    -> ExactlyOne a
-    -> ExactlyOne b
-  (<$>) =
-    error "todo: Course.Functor (<$>)#instance ExactlyOne"
+-- instance Functor ExactlyOne where
+--   (<$>) ::
+--     (a -> b)
+--     -> ExactlyOne a
+--     -> ExactlyOne b
+--   (<$>) = _hole
 
 -- | Maps a function on the List functor.
 --
@@ -94,13 +93,19 @@ instance Functor ((->) t) where
 -- prop> \x a b c -> x <$ (a :. b :. c :. Nil) == (x :. x :. x :. Nil)
 --
 -- prop> \x q -> x <$ Full q == Full x
-(<$) ::
-  Functor k =>
-  a
-  -> k b
-  -> k a
-(<$) =
-  error "todo: Course.Functor#(<$)"
+-- (<$) ::
+--   Functor k =>
+--   a
+--   -> k b
+--   -> k a
+-- (<$) = a kb = _hole
+-- (<$) = a kb = _hole <$> kb
+-- (<$) = a kb = (\b -> a) <$> kb
+-- (<$) = a kb = const a <$> kb
+
+
+const :: a -> b -> a
+const a _ = a
 
 -- | Apply a value to a functor-of-functions.
 --
@@ -124,8 +129,10 @@ instance Functor ((->) t) where
   k (a -> b)
   -> a
   -> k b
-(??) ff a =
-  error "todo: Course.Functor#(??)"
+-- (??) kab a = _hole
+-- (??) kab a = _hole <$> kab
+-- (??) kab a = (\ab -> _hole) <$> kab
+(??) kab a = (\ab -> ab a) <$> kab
 
 infixl 1 ??
 
@@ -142,12 +149,12 @@ infixl 1 ??
 --
 -- >>> void (+10) 5
 -- ()
-void ::
-  Functor k =>
-  k a
-  -> k ()
-void =
-  error "todo: Course.Functor#void"
+-- void ::
+--   Functor k =>
+--   k a
+--   -> k ()
+-- -- void = _hole
+-- void k = () <$ k
 
 -----------------------
 -- SUPPORT LIBRARIES --

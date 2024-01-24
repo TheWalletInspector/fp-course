@@ -312,12 +312,12 @@ reverse =
 --
 -- >>> let (x:.y:.z:.w:._) = produce (*2) 1 in [x,y,z,w]
 -- [1,2,4,8]
-produce ::
-  (a -> a)
-  -> a
-  -> List a
-produce f x =
-  error "todo: Course.List#produce"
+-- produce ::
+--   (a -> a)
+--   -> a
+--   -> List a
+-- produce f x =
+--   error "todo: Course.List#produce"
 
 -- | Do anything other than reverse a list.
 -- Is it even possible?
