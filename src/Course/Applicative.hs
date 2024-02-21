@@ -71,8 +71,11 @@ instance Applicative List where
     List (a -> b)
     -> List a
     -> List b
-  (<*>) =
-    error "todo: Course.Apply (<*>)#instance List"
+  (<*>) Nil = Nil
+  (<*>) _ Nil = Nil
+  (<*>) (hab :. tab) values = (hab <$> values) ++ (tab <*> values)
+  -- (<*>) =
+    -- error "todo: Course.Apply (<*>)#instance List"
 
 -- | Insert into an Optional.
 --
@@ -158,6 +161,7 @@ lift2 ::
   -> k c
 lift2 =
   error "todo: Course.Applicative#lift2"
+
 
 -- | Apply a ternary function in the environment.
 -- /can be written using `lift2` and `(<*>)`./
@@ -325,8 +329,10 @@ sequence ::
   Applicative k =>
   List (k a)
   -> k (List a)
-sequence =
-  error "todo: Course.Applicative#sequence"
+sequence Nil = pure Nil
+sequence (h:.t) = lift2 (:.) h (sequence t)
+-- sequence =
+  -- error "todo: Course.Applicative#sequence"
 
 -- | Replicate an effect a given number of times.
 --
@@ -351,8 +357,9 @@ replicateA ::
   Int
   -> k a
   -> k (List a)
-replicateA =
-  error "todo: Course.Applicative#replicateA"
+-- replicateA =
+  -- error "todo: Course.Applicative#replicateA"
+replicateA n ka = lift2 (:.) ka (replicateA (n-1) ka)
 
 -- | Filter a list with a predicate that produces an effect.
 --
@@ -379,8 +386,10 @@ filtering ::
   (a -> k Bool)
   -> List a
   -> k (List a)
-filtering =
-  error "todo: Course.Applicative#filtering"
+filtering _ Nil = pure Nil
+filtering p (h:.t) = lift3 (\b a -> if b then (a :.) else id) (p h) (pure h) (filtering p t)
+-- filtering =
+  -- error "todo: Course.Applicative#filtering"
 
 -----------------------
 -- SUPPORT LIBRARIES --
