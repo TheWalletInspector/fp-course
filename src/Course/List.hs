@@ -35,6 +35,7 @@ import qualified Numeric as N
 data List t =
   Nil
   | t :. List t
+  -- | (:.) t (List t)
   deriving (Eq, Ord)
 
 -- Right-associative
