@@ -79,7 +79,8 @@ headOr ::
   a
   -> List a
   -> a
-heodOr f = 
+headOr defaultValue Nil = defaultValue
+headOr _ (h :. _) = h
 -- headOr =
   -- error "todo: Course.List#headOr"
 
@@ -96,8 +97,8 @@ heodOr f =
 product ::
   List Int
   -> Int
-product =
-  error "todo: Course.List#product"
+product Nil = 1
+product l = foldLeft(*) 1 l
 
 -- | Sum the elements of the list.
 --
@@ -123,7 +124,8 @@ sum =
 length ::
   List a
   -> Int
-length f = 
+-- length l = foldLeft (\acc _ -> acc + 1) 0 l
+length = foldLeft (\acc _ -> acc + 1) 0
 -- length =
   -- error "todo: Course.List#length"
 
